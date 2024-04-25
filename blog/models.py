@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils.text import slugify
-
+from tinymce.models import HTMLField
 
 # Create your models here.
 class Category(models.Model):
@@ -13,6 +13,7 @@ class Category(models.Model):
 class Post(models.Model):
     title = models.CharField(max_length=100)
     author = models.CharField(max_length=50)
+    content =HTMLField()
     description = models.CharField(max_length=100)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
