@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import Post ,Category,Comment
-from .models_user.custom_user import CustomUser
+from .models_user.custom_user_models import CustomUser
 # Register your models here.
 from .admin_form.custom_user_admin_form import CustomUserAdminForm
 
@@ -19,7 +19,7 @@ class  CustomUserAdmin(admin.ModelAdmin):
         
         form.base_fields =dict(
             [
-                ('user',form.base_fields['user']),
+                ('username',form.base_fields['username']),
                 ('email',form.base_fields['email']),
                 ('first_name',form.base_fields['first_name']),
                 ('last_name',form.base_fields['last_name']),
