@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils.text import slugify
 from tinymce.models import HTMLField
-from .models_user.custom_user import CustomUser
+from .models_user.custom_user_models import CustomUser
 class Category(models.Model):
     name = models.CharField(max_length=30)
     description = models.CharField(max_length=255)
