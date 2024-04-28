@@ -1,19 +1,19 @@
 from django.db import models
 from django.utils.text import slugify
 from tinymce.models import HTMLField
-
-# Create your models here.
+from .models_user.custom_user import CustomUser
 class Category(models.Model):
-    name = models.CharField(max_length=100)
-    description = models. CharField(max_length=255)
+    name = models.CharField(max_length=30)
+    description = models.CharField(max_length=255)
     slug = models.SlugField(unique=True)
-    color=models.CharField(max_length=20)
+    color=models.CharField(max_length=20)   
     
-    
+    def __str__(self):
+         return self.name
 class Post(models.Model):
     title = models.CharField(max_length=100)
-    author = models.CharField(max_length=50)
-    content =HTMLField()
+    author = models.ForeignKey(CustomUser,on_delete=models.CASCADE)
+    content =HTMLField(default="")
     description = models.CharField(max_length=100)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
@@ -34,13 +34,17 @@ class Post(models.Model):
     views_count = models.IntegerField()
     like_count = models.IntegerField(default=0)
 
-    
+    def save (self,*args,**kwargs):
+        self.slug = slugify(self.title)
+        super = (Category,self).save(*args,**kwargs)
+        
 class  PostCategory(models.Model):
     post =models.ForeignKey(Post, on_delete=models.CASCADE)
     category =models.ForeignKey(Category,on_delete=models.CASCADE)
-
+     
+     
 class Comment (models.Model):
-    author =models.CharField(max_length=20)
+    author = models.ForeignKey(CustomUser,on_delete=models.CASCADE)
     content = models.TextField()
     created_at =models.DateTimeField()
     updated_at = models.DateTimeField( )
