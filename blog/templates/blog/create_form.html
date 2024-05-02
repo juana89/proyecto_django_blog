@@ -1,0 +1,10 @@
+{%extends "base.html" %}
+{%block content%}
+  <p>crear articulo</p>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class ="cta-button">{{ submit }}</button>
+  </form>
+
+{% endblock %}

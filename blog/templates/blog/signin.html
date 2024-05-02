@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Iniciar Sesion{% endblock  %}
+{% block content %}
+<div class ="container">
+    <h2>iniciar session</h2>
+    {% if error %}
+        <div class="alert alert-danger">{{ error}}</div>
+    {% endif %}
+    <form method= 'post'>
+        {% csrf_token %}
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Nombre</label>
+          <input type="text" class="form-control"  id ="username" name ="username" required >
+         
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Contraseña</label>
+          <input type="password" class="form-control" id ="password" name ="password" required>
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Ingresar</button>
+      </form>
+      
+</div>
+{% endblock  %}
