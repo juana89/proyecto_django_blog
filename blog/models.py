@@ -10,6 +10,11 @@ class Category(models.Model):
     
     def __str__(self):
          return self.name
+     
+    def save (self,*args,**kwargs):
+        self.slug = slugify(self.name)
+        super(Category,self).save(*args,**kwargs)
+        
 class Post(models.Model):
     title = models.CharField(max_length=100)
     author = models.ForeignKey(CustomUser,on_delete=models.CASCADE)
@@ -31,12 +36,15 @@ class Post(models.Model):
     slug = models.SlugField(unique=True)
     image = models.ImageField(upload_to='blog',default='',blank=True)
     comments_count = models.IntegerField(default =0)
-    views_count = models.IntegerField()
+    views_count = models.IntegerField(default=0)
     like_count = models.IntegerField(default=0)
-
+    
+    def __str__(self):
+        return self.title
+    
     def save (self,*args,**kwargs):
         self.slug = slugify(self.title)
-        super = (Category,self).save(*args,**kwargs)
+        super(Post,self).save(*args,**kwargs)
         
 class  PostCategory(models.Model):
     post =models.ForeignKey(Post, on_delete=models.CASCADE)

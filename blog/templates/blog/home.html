@@ -1,16 +1,57 @@
 {%extends "base.html" %}
+{% load static %} 
+
 {%block title%} Articulos{% endblock %}
 
-{%block content%}
-
-<section class="hero">
-
-  <h1>Bienvenidos al blog </h1>
-  <p>lo mas reciente </p>
-
-</section>
-
-<section class="reciente">
-<p>lo mas visto</p>
-</section>
+{% block styles %}
+<link rel="stylesheet" href="\static\css\home.css">
 {% endblock %}
+
+{%block content%}
+  <h1>Bienvenidos al blog </h1>
+  <p>Aqui encontrarás las ultimas novedades en videojuego</p>
+  <section class="post_reciente">
+    <h2>Lo mas reciente</h2>
+    
+      <div class="post_ini">
+         {% for  post in  post_recientes %}
+               <div class="post-card">
+                   <a href="{% url 'post' %}">
+                      <img
+                         width="auto"
+                         height="auto"
+                         src="static\img\20245117461275_1.jpg.webp"
+                      />    
+                     </a>
+
+                         <h3>{{ post.title }}</h3>
+                         <p>{{post.description}}</p>
+                        <p>{{post.created_at}}</p>
+                </div>  
+           {% endfor %}
+      </div>
+  </section>
+  {% endblock %}
+
+   <section class="post_reciente">
+    <h2>Lo mas reciente</h2>
+    
+    <div class="post_ini">
+       {% for  post in  post_recientes %}
+             <div class="post-card">
+                 <a href="{% url 'post' %}">
+                    <img
+                       width="auto"
+                       height="auto"
+                       src="static\imagenes/descarga.jpeg"
+                    />    
+                   </a>
+
+                       <h3>{{ post.title }}</h3>
+                       <p>{{post.description}}</p>
+                      <p>{{post.created_at}}</p>
+              </div>  
+         {% endfor %}
+    </div>
+</section>
+
