@@ -1,10 +1,10 @@
 {%extends "base.html" %}
 {%block content%}
-  <p>crear articulo</p>
+  <p>Nuevo Post</p>
   <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit" class ="cta-button">{{ submit }}</button>
+    <button type="submit" class ="cta-button">Guardar</button>
   </form>
 
 {% endblock %}

@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from .models import Post
 from django.contrib.auth.decorators import login_required
 from .models_user import *
-#from .forms import CreateForm
+from  .forms_create_post import CreateForm
 
 #sentencia para inicar y cerrar sesion
 from  django.http import HttpResponseRedirect
@@ -11,7 +11,7 @@ from django.contrib.auth import authenticate,login, logout
 
 #Dependencia para consultas complejas
 from django.db.models import Q
-from .models import Post
+from. models import Post
 
 @login_required
 def home (request):
@@ -59,12 +59,18 @@ def post_views(request):
 def categorie_views(request):
   return render(request,'blog/categoria.html')
 
-#def create_views(request):
-#if  request.method =="POST":
- #     form = CreateForm(request.POST)
- #     if form.is_valid():
- #        form.save()
-#      else:
-#         form =CreateForm()
- #  context ={'title':'titulo','form':form ,}
-#   return render(request,'blog/create_form.html',context)
+
+
+def create_views(request):
+      
+    return render(request,'blog/create_form.html',{'form':CreateForm})
+   
+ #if  request.method =="POST":
+ #    form = CreateForm(request.POST)
+ #if form.is_valid():
+ #       form.save()
+ #else:
+ #  form =CreateForm()
+ #     
+ #context ={'title':'titulo','form':form ,}
+ #return render(request,'blog/create_form.html',context)

@@ -4,4 +4,5 @@ from models import Post
 class CreateForm(ModelForm):
     class meta:
         model : Post
-        field ="__all__"
+        field =['title','author','content','img']
+        

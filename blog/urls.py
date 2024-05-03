@@ -7,6 +7,6 @@ urlpatterns = [
     path('logout/',logout_view,name="logout"),
     path('post/',post_views,name="post"),
     path('categorie/',categorie_views,name="categorie"),
-    #path('create/',create_views,name="create"),
+    path('create/',create_views,name="create"),
     
 ]
