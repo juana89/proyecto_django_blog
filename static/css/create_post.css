@@ -1,0 +1,21 @@
+h1{
+    color: white;
+}
+post-f{
+    width: 300px;
+    border-radius: 15px;
+    background-color: rebeccapurple;
+}
+.cta-button{
+    background-color: #85a4af;
+    border-radius: 5px;
+    color: white;
+    border: none;
+    padding: 5px;
+    margin-left: 300px;
+}
+.cta-button:hover { background-color: #970e03; }
+
+.file{
+    width: 400px;
+}

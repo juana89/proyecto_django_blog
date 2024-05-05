@@ -31,10 +31,10 @@ class Post(models.Model):
             ("eliminado", "Eliminado"),
         ],
     default =20,
-    blank=True,
+    blank=True,         
     )
     slug = models.SlugField(unique=True)
-    image = models.ImageField(upload_to='blog',default='',blank=True)
+    image = models.ImageField(upload_to='blog/post',default='blog/post/default.png',blank=True)
     comments_count = models.IntegerField(default =0)
     views_count = models.IntegerField(default=0)
     like_count = models.IntegerField(default=0)
@@ -43,7 +43,9 @@ class Post(models.Model):
         return self.title
     
     def save (self,*args,**kwargs):
-        self.slug = slugify(self.title)
+        if not self.image:
+            self.image = "blog/post/default.png"
+            self.slug = slugify(self.title)
         super(Post,self).save(*args,**kwargs)
         
 class  PostCategory(models.Model):
