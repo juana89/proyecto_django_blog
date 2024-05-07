@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from .models import Post
+from .models import Post,Category
 from django.contrib.auth.decorators import login_required
 from .models_user import *
 from  .forms_create_post import CreateForm
@@ -11,7 +11,7 @@ from django.contrib.auth import authenticate,login, logout
 
 #Dependencia para consultas complejas
 from django.db.models import Q
-from. models import Post
+from. models import Post,Comment
 
 @login_required
 def home (request):
@@ -52,25 +52,36 @@ def  logout_view(request):
    logout(request)
    return HttpResponseRedirect(reverse("signin"))
   
-
-def post_views(request):
-  return render(request,'blog/post.html')
-
-def categorie_views(request):
-  return render(request,'blog/categoria.html')
-
-
-
-def create_views(request):
-      
-    return render(request,'blog/create_form.html',{'form':CreateForm})
+#------------------------
+def search_post(request):
+   search=request.GET.get("search", "") 
+   if search:
+      post =Post.objects.filter(
+         Q(title__icontains=search)|
+         Q(content__icontains=search),
+         status="publicado",
+      ).distinct()
+   else:     
+      post =Post.objects.none()
+   return render(request,'blog/search.html',{'post':post,'search':search})
    
- #if  request.method =="POST":
- #    form = CreateForm(request.POST)
- #if form.is_valid():
- #       form.save()
- #else:
- #  form =CreateForm()
- #     
- #context ={'title':'titulo','form':form ,}
- #return render(request,'blog/create_form.html',context)
+def post_detail(request,post_id):
+   post=Post.objects.get(id=post_id)
+   return render(request,"blog/post_detail.html",{'post':post})
+#_____________________-
+def categorie_views(request):
+   return render(request,"blog/categoria.html")
+
+
+def create_post(request):
+    if request.method == 'POST':
+        form = CreateForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    else:
+        form = CreateForm()
+    return render(request, 'blog/create_post_form.html', {'form': form})
+
+
+

@@ -1,13 +1,12 @@
 {%extends "base.html" %}
 
 {%block content%}
-<h1>{{ post.title }}</h1>
-<div class="post-info">
+{% for post in posts %}
+<h2><a href="{% url 'post_detail' post.slug %}">{{ post.title }}</a></h2>
+<p>{{ post.body|truncatewords:30 }}</p>
+<p>{{ post.created }}</p>
+{% empty %}
+<p>No hay posts</p>
+{% endfor %}
 
-  
-    <div class="post-details">
-       
-       
-    </div>
-</div>
 {% endblock %}

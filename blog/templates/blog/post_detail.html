@@ -1,0 +1,30 @@
+{%extends "base.html" %}
+
+{%block content%}
+
+
+<div class="container-xxl bd-gutter mt-3 my-md-4 bd-layout">
+   <main class="container">
+     
+      <div class="row g-5">
+         <div class="col-md-12">
+       
+               <div class="row">
+                   <div class="d-flex justify-content-between">
+                        <h1>{{post.title}}</h1>
+                   
+               </div>
+               <hr class="d-none d-md-block my-2 mb-3 mt-2">
+               <div class="col-auto d-none d-lg-block">
+                  <img src="{{ post.image.url }}" alt="{{ post.title }}" width= "100%"  class=""/> 
+                </div>
+                <hr class="d-none d-md-block my-2 mb-3 mt-2">
+                <div class="aling-self-end">Publicado:{{ post.created_at.date }} por {{post.author}}</div>
+                 <p>{{ post.content | safe}}</p>
+         </div>     
+      </div>    
+     
+   </main> 
+</div>
+
+{% endblock %}
