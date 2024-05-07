@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from .models import Post
+from .models import Post,Category
 from django.contrib.auth.decorators import login_required
 from .models_user import *
 from  .forms_create_post import CreateForm
@@ -70,7 +70,7 @@ def post_detail(request,post_id):
    return render(request,"blog/post_detail.html",{'post':post})
 #_____________________-
 def categorie_views(request):
-  return render(request,'blog/categoria.html')
+   return render(request,"blog/categoria.html")
 
 
 def create_post(request):

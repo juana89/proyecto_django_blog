@@ -11,7 +11,8 @@
 
 <section class="hero">
   <h1>Bienvenidos al blog </h1>
-  <p>Aqui encontrarás las ultimas novedades en videojuego</p>
+  <p>Aqui encontrarás las ultimas novedades en programación</p>
+
 </section>
 
   <section class="post_reciente">
@@ -20,13 +21,14 @@
       <div class="post_ini">
          {% for  post in  post_recientes %}
          
-         <div class="card" style="width: 18rem;">
-          <img src="{{ post.image.url }}" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">{{ post.title }}</h5>
-            <p class="card-text">{{post.description}}</p>
-            <a href="{% url 'post_detail' post.id %}" class="btn btn-primary">Ver más..</a>
-          </div>
+        <div class="card" style="width: 20rem">
+           		<img src="{{ post.image.url }}" class="card-img-top" alt="..." >
+         			<div class="card-body">
+            			<h5 class="card-title">{{ post.title }}</h5>
+           				 <p>{{ post.content|truncatewords:30  | safe}}</p>
+           				 <p class="card-text">{{post.description}}</p>
+           				 <a href="{% url 'post_detail' post.id %}" class="btn btn-primary">Ver más..</a>
+         			</div>
         </div>
            {% endfor %}
       </div>
@@ -36,16 +38,17 @@
      <div class="post_ini">
          {% for  post in  post_recientes %}
          
-         <div class="card" style="width: 18rem;">
-          <img src="{{ post.image.url }}" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">{{ post.title }}</h5>
-            <p class="card-text">{{post.description}}</p>
-            <a href="#" class="btn btn-primary">Ver más..</a>
-          </div>
+		<div class="card" style="width: 20rem">
+			<img src="{{ post.image.url }}" class="card-img-top" alt="..." >
+			  	<div class="card-body">
+				 	<h5 class="card-title">{{ post.title }}</h5>
+					 <p>{{ post.content|truncatewords:30  | safe}}</p>
+					 <p class="card-text">{{post.description}}</p>
+					 <a href="{% url 'post_detail' post.id %}" class="btn btn-primary">Ver más..</a>
+			 	 </div>
         </div>
-           {% endfor %}
-      </div>
+       {% endfor %}
+    </div>
   </section>
   {% endblock %}
            

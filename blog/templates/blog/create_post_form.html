@@ -13,3 +13,7 @@
   </form>
 
 {% endblock %}
+
+def categorie_views(request,category_id):
+   category =Category.objects.get(id=category_id)
+   return render(request,'blog/categoria.html',{'categoria':category})
