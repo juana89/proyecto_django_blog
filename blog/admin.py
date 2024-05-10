@@ -1,12 +1,12 @@
 from django.contrib import admin
-from .models import Post ,Category,Comment
+from .models import Post ,Category,Comment, PostCategory
 from .models_user.custom_user_models import CustomUser
 # Register your models here.
 from .admin_form.custom_user_admin_form import CustomUserAdminForm
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('title','author','content','description','created_at','image','status','slug','views_count','like_count')
+    list_display = ('title','author','content','description','created_at' ,'image','status','slug','views_count','like_count',)
     search_fields = ('title',' description')
     exclude = ('updated_at','slug','comments_count','views_count','like_count')
     

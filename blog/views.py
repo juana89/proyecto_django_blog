@@ -54,23 +54,27 @@ def  logout_view(request):
   
 #------------------------
 def search_post(request):
-   search=request.GET.get("search", "") 
-   if search:
-      post =Post.objects.filter(
-         Q(title__icontains=search)|
-         Q(content__icontains=search),
+   print(f"GET:{request.GET}")
+   query=request.GET.get("query", "") 
+   print(f"query:{query}")
+   if query:
+      post = Post.objects.filter(
+         Q(title__icontains=query)
+         | Q(content__icontains=query),
          status="publicado",
-      ).distinct()
+      )
    else:     
       post =Post.objects.none()
-   return render(request,'blog/search.html',{'post':post,'search':search})
+   return render(request,'blog/search.html',{'post_filter':post,'query':query})
    
 def post_detail(request,post_id):
    post=Post.objects.get(id=post_id)
    return render(request,"blog/post_detail.html",{'post':post})
 #_____________________-
 def categorie_views(request):
-   return render(request,"blog/categoria.html")
+    category_list = Category.objects.all()
+    context = {'object_list': category_list}
+    return render(request, 'blog/categoria.html', context)
 
 
 def create_post(request):

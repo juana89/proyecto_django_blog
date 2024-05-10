@@ -1,19 +1,22 @@
 {%extends "base.html" %}
 {% load static %} 
+
 {% block styles %}
+
 <link rel="stylesheet" href="{% static 'css/create_post.css' %}">
 {% endblock %}
 
 {%block content%}
   <h1>Nuevo Post</h1>
-  <form method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class ="cta-button">Guardar</button>
-  </form>
+  <div class="mb-3">
+   <div class="mx-auto p-2" style="width:1000px;">
+     <form method="POST" enctype="multipart/form-data" class="form_post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class ="cta-button">Guardar</button>
+    </form>
+  </div>
+  </div>
 
 {% endblock %}
 
-def categorie_views(request,category_id):
-   category =Category.objects.get(id=category_id)
-   return render(request,'blog/categoria.html',{'categoria':category})

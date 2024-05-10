@@ -19,10 +19,10 @@ class Post(models.Model):
     title = models.CharField(max_length=100)
     author = models.ForeignKey(CustomUser,on_delete=models.CASCADE)
     content =HTMLField(default="")
-    description = models.CharField(max_length=100)
+    description = models.CharField(max_length=100,null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
-    categories = models.ManyToManyField('Category')
+    categories = models.ManyToManyField(Category)
     status =  models.CharField(
         max_length=20,
         choices=[
@@ -30,7 +30,7 @@ class Post(models.Model):
             ("publicado", "Publicado"),
             ("eliminado", "Eliminado"),
         ],
-    default =20,
+    default ="publicado",
     blank=True,         
     )
     slug = models.SlugField(unique=True)

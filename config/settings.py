@@ -139,8 +139,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # TinyMCE
 TINYMCE_DEFAULT_CONFIG = {
-    "height": 360,
-    "width": "100%",
+    "height": 400,
+    "width": "50%",
     "cleanup_on_startup": True,
     "custom_undo_redo_levels": 20,
     "selector": "textarea",
