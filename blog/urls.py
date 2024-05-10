@@ -8,6 +8,6 @@ urlpatterns = [
     path("post/<int:post_id>/", post_detail, name="post_detail"),
     path('categorie/',categorie_views,name="categorie"),
     path('create/',create_post,name="create"),
-    path('search/',search_post,name="search"),
+    path('search/',search_post,name="search_post"),
     
 ]

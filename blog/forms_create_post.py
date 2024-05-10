@@ -1,6 +1,6 @@
 from django.forms import *
 from .models import Post
-
+from  tinymce.widgets import TinyMCE
 class CreateForm(ModelForm):
     class Meta:
         model = Post
@@ -16,20 +16,20 @@ class CreateForm(ModelForm):
             "title":TextInput(
                 attrs={
                     "placeholder":"Ingrese el titulo",
-                    "class":"form-control post-f",
+                    "class":"form-control-sm",
                 }
             ),
             "author":TextInput(
                 attrs={
                     "placeholder":"Ingrese su nombre",
-                    "class":"form-control",
+                    "class":"form-control-sm",
                 }
             ),
             
-            "content":Textarea(
+            "content":TinyMCE(
                 attrs={
                     "placeholder":"Ingrese el contenido",
-                    "class":"form-control",
+                   
                 }
             ),
             "image":FileInput(
